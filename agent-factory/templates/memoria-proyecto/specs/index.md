@@ -1,26 +1,26 @@
-# Specs del proyecto {NOMBRE_PROYECTO}
+# Specs for project {PROJECT_NAME}
 
-Un **spec** es el contrato de comportamiento de una parte del proyecto que excede un checklist simple: reglas entrelazadas, estados y transiciones, casos borde. Sobrevive a los checklists que lo implementan y se mantiene al día cuando la realidad cambia — un spec desactualizado es peor que no tenerlo.
+A **spec** is the behavior contract of a project part that exceeds a simple checklist: intertwined rules, states and transitions, edge cases. It outlives the checklists that implement it and stays current when reality changes — an outdated spec is worse than not having one.
 
-**¿Spec o solo checklist?** Si puedes explicar el comportamiento en ≤10 líneas, checklist. Si necesitas tablas de estados, casos borde y escenarios, spec.
+**Spec or just a checklist?** If you can explain the behavior in ≤10 lines, checklist. If you need state tables, edge cases, and scenarios, spec.
 
-## Specs activos
+## Active specs
 
-| Archivo | Estado | Prioridad | Qué cubre | Última actualización |
+| File | Status | Priority | What it covers | Last updated |
 |---|---|---|---|---|
-| _(ninguno todavía)_ | | | | |
+| _(none yet)_ | | | | |
 
-## Estados
+## States
 
-| Estado | Significa |
+| State | Means |
 |---|---|
-| Draft | En construcción; nada se implementa basado en él todavía |
-| Approved | Fuente de verdad; el trabajo derivado puede ejecutarse |
-| Amended | Un cambio real alteró el comportamiento; el spec ya se actualizó en la misma sesión |
-| Archived | La parte descrita se retiró o reemplazó (el archivo pasa a `archive/`) |
+| Draft | Under construction; nothing gets implemented based on it yet |
+| Approved | Source of truth; derived work can be executed |
+| Amended | A real change altered the behavior; the spec was already updated in the same session |
+| Archived | The described part was retired or replaced (the file moves to `archive/`) |
 
-## Reglas
+## Rules
 
-- Si el trabajo cambia un comportamiento descrito en un spec, el spec se actualiza **en la misma sesión**.
-- Las decisiones pendientes del humano NO se entierran en una sección del spec esperando que las encuentre: se le preguntan por el chat de la sesión donde nacen.
-- Solo este índice se carga al arranque; cada spec se lee bajo demanda.
+- If the work changes a behavior described in a spec, the spec is updated **in the same session**.
+- Decisions pending from the human are NOT buried in a section of the spec waiting to be found: they're asked in the chat of the session where they arise.
+- Only this index loads at startup; each spec is read on demand.

@@ -5,19 +5,19 @@
     "url": "https://github.com/Anjos2"
   },
   "metadata": {
-    "description": "La Oficina — crea tu equipo de agentes de IA con memoria persistente que colaboran en tus proyectos. / Build your AI agent team with persistent memory, collaborating on your projects.",
+    "description": "La Oficina — build your AI agent team with persistent memory, collaborating on your projects. / Crea tu equipo de agentes de IA con memoria persistente que colaboran en tus proyectos.",
     "website": "https://oficina.itelsystems.pe"
   },
   "plugins": [
     {
       "name": "agent-factory",
       "source": "./agent-factory",
-      "description": "El generador: crea agentes completos (identidad + memoria + skills) para cualquier dominio con /crear-agente, respaldado por investigación profunda (/recursive-research)."
+      "description": "The generator: creates complete agents (identity + research-backed memory + skills) for any domain with /create-agent (alias /crear-agente), powered by deep research (/recursive-research). Works in the user's language."
     },
     {
       "name": "agent-office",
       "source": "./agent-office",
-      "description": "Coordinación en vivo entre agentes del mismo proyecto: presencia, menciones, reservas. Complemento opcional (beta) — todo funciona sin él."
+      "description": "Live coordination between agents on the same project: presence, mentions with inbox, resource claims. Optional add-on (beta) — everything works without it."
     }
   ]
 }

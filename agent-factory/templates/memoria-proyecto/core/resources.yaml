@@ -1,0 +1,28 @@
+# Resources of project {PROJECT_NAME}
+# Tools, services, accounts, locations, and assets the project uses.
+# CREDENTIALS do not go here — they go as pointers in references.md.
+
+tools:
+  # Software, platforms, or services used to work.
+  - name: "{e.g.: shared spreadsheet / CRM / editor / platform X}"
+    purpose: "{what it's used for in this project}"
+    location: "{URL, path, or where it's found}"
+    criticality: "{high|medium|low}"
+
+accounts_and_services:
+  # Third-party accounts involved (email, social media, APIs, storage...).
+  - service: "{name}"
+    use: "{what for}"
+    access: "see references.md → {entry}"
+
+work_locations:
+  # Where things live: folders, repositories, drives, servers if any.
+  - what: "{e.g.: deliverables folder / repository / drive}"
+    where: "{path or URL}"
+    notes: "{who can touch it, conventions}"
+
+assets:
+  # The project's own material: templates, brand assets, databases, inventories...
+  - asset: "{name}"
+    where: "{location}"
+    notes: "{status, version, owner}"

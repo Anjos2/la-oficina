@@ -1,0 +1,42 @@
+# Business of project {PROJECT_NAME}
+# The WHAT and the FOR WHOM. Filled in by the agent interviewing the human when creating the project.
+# Documents what IS (current state); history goes in log.md.
+
+project:
+  name: "{name}"
+  purpose: "{1-2 lines: what problem it solves or what it aims to achieve}"
+  start_date: "{YYYY-MM-DD}"
+
+people:
+  - role: "Owner / decision maker"
+    name: "{name}"
+    context: "{how they participate, what they decide}"
+  - role: "Final recipient"
+    description: "{who receives/uses the result}"
+
+domain:
+  description: |
+    {2-3 paragraphs in plain language: what the project is about.
+     Someone unfamiliar with the topic should be able to understand it.}
+
+glossary:
+  # Domain terms that all agents use consistently.
+  - term: "{term}"
+    meaning: "{what it means HERE}"
+
+general_acceptance_criteria:
+  # What makes a deliverable of this project "good." Specific ones go in each checklist.
+  - "{criterion 1}"
+  - "{criterion 2}"
+
+goals_and_milestones:
+  - milestone: "{name}"
+    trigger_condition: "{what triggers it: date, metric, decision}"
+    status: "{planned | in_progress | achieved}"
+
+key_business_decisions:
+  # Human decisions that shape the project — with their why, for when time erases the context.
+  - date: "{YYYY-MM-DD}"
+    decision: "{what was decided}"
+    why: "{motivation}"
+    impact: "{what changes as a result}"

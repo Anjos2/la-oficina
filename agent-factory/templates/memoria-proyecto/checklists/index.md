@@ -1,25 +1,25 @@
-# Checklists del proyecto {NOMBRE_PROYECTO}
+# Checklists for project {PROJECT_NAME}
 
-Índice global. Cada agente carga al arranque este índice y solo su(s) checklist(s) activo(s). **La fuente de verdad del estado es el filesystem** (`ls active/`): si este índice difiere, se corrige el índice.
+Global index. Each agent loads this index at startup, plus only its own active checklist(s). **The source of truth for status is the filesystem** (`ls active/`): if this index differs, the index is corrected.
 
-## Activos
+## Active
 
-| Archivo | Agente | Items pendientes | Items totales | Creado | Última actividad | Prioridad |
+| File | Agent | Pending items | Total items | Created | Last activity | Priority |
 |---|---|---|---|---|---|---|
-| _(ninguno todavía)_ | | | | | | |
+| _(none yet)_ | | | | | | |
 
-## Archivados
+## Archived
 
-**No se cargan al arranque.** Consultar solo bajo demanda.
+**Not loaded at startup.** Consult only on demand.
 
-| Archivo | Agente | Completado | Items totales | Creado | Archivado |
+| File | Agent | Completed | Total items | Created | Archived |
 |---|---|---|---|---|---|
-| _(ninguno)_ | | | | | |
+| _(none)_ | | | | | |
 
-## Reglas del índice
+## Index rules
 
-- Dos secciones separadas (Activos / Archivados) — nunca una tabla única con columna de estado.
-- Al archivar un checklist: se **mueve el archivo** de `active/` a `archive/` Y se **mueve la fila** de sección (no se edita en el lugar).
-- Celdas cortas: la narrativa vive en el checklist ("Resumen de Entrega") y en el log, no aquí.
-- Nombre de archivo: `{YYYY-MM-DD}-{agente}-{tema}.md`.
-- Estados de item: `[ ]` pendiente · `[-]` en curso · `[x]` completado · `[!]` bloqueado con nota.
+- Two separate sections (Active / Archived) — never a single table with a status column.
+- When archiving a checklist: the **file is moved** from `active/` to `archive/` AND the **row is moved** between sections (not edited in place).
+- Short cells: the narrative lives in the checklist ("Delivery Summary") and in the log, not here.
+- File name: `{YYYY-MM-DD}-{agent}-{topic}.md`.
+- Item states: `[ ]` pending · `[-]` in progress · `[x]` completed · `[!]` blocked with a note.

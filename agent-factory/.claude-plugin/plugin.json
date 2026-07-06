@@ -1,7 +1,7 @@
 {
   "name": "agent-factory",
-  "description": "Crea agentes de IA completos para cualquier dominio: /crear-agente entrevista, investiga a profundidad y genera la carpeta del agente (identidad + memoria gestionada + skills) bajo el Protocolo de La Oficina. Incluye /recursive-research.",
-  "version": "0.1.0",
+  "description": "Creates complete AI agents for any domain: /create-agent (alias /crear-agente) interviews you, researches the domain in depth and generates the agent folder (identity + managed memory + skills) under the La Oficina Protocol. Includes /recursive-research. Works in the user's language.",
+  "version": "0.2.0",
   "author": {
     "name": "Joseph Huayhualla (Anjos2)",
     "url": "https://github.com/Anjos2"

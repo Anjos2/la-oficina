@@ -1,21 +1,21 @@
-# Convenciones de este proyecto
+# Conventions for this project
 
-Particularidades de {NOMBRE_PROYECTO} que el protocolo general no cubre. Completar al iniciar y mantener al día.
+Particulars of {PROJECT_NAME} that the general protocol doesn't cover. Fill in at kickoff and keep up to date.
 
-## Zona horaria del proyecto
+## Project timezone
 
-Los registros del log usan la zona: `{ej: America/Lima}`. Si tu máquina está en otra zona, convierte o declara ambas.
+Log records use the timezone: `{e.g.: America/Lima}`. If your machine is in a different timezone, convert or state both.
 
-## Idioma de trabajo
+## Working language
 
-- Comunicación y documentos: `{idioma}`
-- {otras convenciones de idioma si aplican}
+- Communication and documents: `{language}`
+- {other language conventions if applicable}
 
-## Flujos propios
+## Own workflows
 
-{Describir aquí cualquier flujo particular: cómo se entrega, quién revisa, qué herramienta central se usa, qué NO se toca sin confirmación, etc.}
+{Describe here any particular workflow: how work gets delivered, who reviews, what central tool is used, what is NOT touched without confirmation, etc.}
 
-## Respaldo
+## Backup
 
-- ¿El proyecto es repositorio git? `{sí/no}` — remoto: `{URL privada o "pendiente"}`
-- Si no es git: `{cómo se respalda}`
+- Is the project a git repository? `{yes/no}` — remote: `{private URL or "pending"}`
+- If not git: `{how it's backed up}`

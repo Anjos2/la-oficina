@@ -1,27 +1,27 @@
-# Proyecto {NOMBRE_PROYECTO} — Memoria
+# Project {PROJECT_NAME} — Memory
 
-Mapa del proyecto. Se carga al arranque de cada sesión; el detalle se carga bajo demanda.
+Project map. Loaded at the start of each session; details load on demand.
 
-## Core (estado vigente del proyecto)
+## Core (project's current state)
 
-| Archivo | Qué contiene | Cuándo cargarlo |
+| File | What it contains | When to load it |
 |---|---|---|
-| `core/negocio.yaml` | Qué es el proyecto, para quién, glosario, criterios de aceptación, decisiones de negocio | Al discutir objetivos, alcance o reglas del dominio |
-| `core/recursos.yaml` | Herramientas, cuentas, servicios, ubicaciones y activos que el proyecto usa | Al tocar herramientas o accesos |
-| `core/referencias.md` | Punteros a credenciales/accesos (NUNCA valores literales) | Al necesitar un acceso |
+| `core/business.yaml` | What the project is, who it's for, glossary, acceptance criteria, business decisions | When discussing goals, scope, or domain rules |
+| `core/resources.yaml` | Tools, accounts, services, locations, and assets the project uses | When touching tools or access |
+| `core/references.md` | Pointers to credentials/access (NEVER literal values) | When an access is needed |
 
 ## Checklists
 
-Ver `checklists/index.md` (estado general). Cada agente carga al arranque solo su(s) checklist(s) activo(s). La fuente de verdad del estado es el filesystem (`ls checklists/active/`).
+See `checklists/index.md` (overall status). Each agent loads at startup only its own active checklist(s). The source of truth for status is the filesystem (`ls checklists/active/`).
 
-## Specs (opcional)
+## Specs (optional)
 
-Ver `specs/index.md` si existe. Un spec describe el contrato de comportamiento de una parte del proyecto que excede un checklist simple (reglas, estados, casos borde). Proyectos simples pueden no tener ninguno.
+See `specs/index.md` if it exists. A spec describes the behavior contract of a project part that exceeds a simple checklist (rules, states, edge cases). Simple projects may have none.
 
-## Log coral
+## Choral log
 
-`log.md` — registro append-only de decisiones, entregas, incidentes e investigaciones de TODOS los agentes del proyecto. Al arranque se leen las últimas ~20 entradas. Rotación por tamaño a `log-archive/`.
+`log.md` — append-only record of decisions, deliveries, incidents, and research from ALL agents on the project. At startup, the last ~20 entries are read. Rotated by size to `log-archive/`.
 
-## Convenciones locales
+## Local conventions
 
-Ver `schema.md`: cómo se trabaja en ESTE proyecto (particularidades que el protocolo general no cubre).
+See `schema.md`: how work is done on THIS project (particulars the general protocol doesn't cover).

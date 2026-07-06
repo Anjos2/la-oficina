@@ -1,28 +1,28 @@
-# {NOMBRE} — Índice maestro de la biblioteca
+# {NAME} — Master library index
 
-**Agente**: {NOMBRE} ({ROL_CORTO})
-**Última actualización**: {YYYY-MM-DD}
-**Total capítulos**: {N}
-**Cola de investigación (semilla)**: {ruta de la semilla activa, o "sin cola activa — crear semilla cuando surjan temas nuevos"}
+**Agent**: {NAME} ({SHORT_ROLE})
+**Last updated**: {YYYY-MM-DD}
+**Total chapters**: {N}
+**Research queue (seed)**: {path to the active seed, or "no active queue — create a seed when new topics come up"}
 
-> Este índice se carga al arranque. Los capítulos, SOLO bajo demanda (un disparador cognitivo los pide). Convención: un número = un archivo.
+> This index loads at startup. Chapters load ONLY on demand (a cognitive trigger requests them). Convention: one number = one file.
 
-## Capítulos
+## Chapters
 
-| # | Archivo | Contenido clave (una línea + palabras clave) |
+| # | File | Key content (one line + keywords) |
 |---|---|---|
-| 01 | [{tema}.md](01-{tema}.md) | {qué responde este capítulo; términos por los que se buscaría} |
-| 02 | [{tema}.md](02-{tema}.md) | {...} |
+| 01 | [{topic}.md](01-{topic}.md) | {what this chapter answers; terms someone would search by} |
+| 02 | [{topic}.md](02-{topic}.md) | {...} |
 
-## Investigaciones
+## Research
 
-| Carpeta | Semilla | Estado | Última actividad |
+| Folder | Seed | Status | Last activity |
 |---|---|---|---|
-| `investigaciones/{slug}/` | {tema investigado} | {en curso / cerrada} | {fecha} |
+| `investigaciones/{slug}/` | {topic researched} | {in progress / closed} | {date} |
 
-## Cómo crece esta biblioteca
+## How this library grows
 
-1. Un tema entra a la semilla → se investiga con `/recursive-research` (fuentes verificables, checkpoints a disco).
-2. Los hallazgos se consolidan como capítulos numerados + este índice se actualiza.
-3. De lo aprendido se destilan skills (procedimientos accionables) cuando aplique.
-4. La semilla consumida se archiva.
+1. A topic enters the seed → gets researched with `/recursive-research` (verifiable sources, disk checkpoints).
+2. Findings get consolidated as numbered chapters + this index gets updated.
+3. Skills (actionable procedures) get distilled from what was learned, when applicable.
+4. The consumed seed gets archived.

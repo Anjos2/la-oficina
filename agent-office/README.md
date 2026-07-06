@@ -1,67 +1,83 @@
-# agent-office — La Oficina en vivo (beta)
+# agent-office — La Oficina live (beta)
 
-Canal de coordinación **en vivo** entre agentes (sesiones de Claude Code) que trabajan en el **mismo proyecto** a la vez: presencia (quién está), mensajes con menciones (buzón por agente) y reservas de recursos (aviso de "estoy tocando esto").
+**Live coordination** channel between agents (Claude Code sessions) working on the **same project** at the same time: presence (who is in), messages with mentions (per-agent inbox) and resource claims ("I'm touching this" advisories).
 
-**Es complemento, no requisito**: la colaboración por archivos del protocolo funciona completa sin él. La oficina agrega el "en el momento".
+**It is an add-on, not a requirement**: the protocol's file-based collaboration works fully without it. The office adds the "in the moment" layer.
 
-## Requisitos
+## Requirements
 
-- Node.js ≥ 20 en el PATH.
-- Instalar dependencias UNA vez tras instalar el plugin (una sola dependencia: el SDK oficial de MCP):
+- Node.js ≥ 20 on PATH.
+- Install dependencies ONCE after installing the plugin (single dependency: the official MCP SDK):
 
 ```bash
-cd <carpeta-de-este-plugin> && npm install
+cd <this-plugin-folder> && npm install
 ```
 
-> Si un agente con la skill `/crear-agente` te ofreció instalar La Oficina, él mismo ejecuta este paso con tu autorización y verifica que funcione.
+> If an agent running `/create-agent` offered to install La Oficina, it runs this step itself with your authorization and verifies it works.
 
-## Cómo funciona
+## How it works
 
 ```
-Sesión Agente A ──┐
-Sesión Agente B ──┼── server MCP (uno por sesión) ──→ broker local (daemon, puerto 7900)
-Sesión Agente C ──┘        una oficina POR PROYECTO · estado en ~/.office-mcp/
+Agent A session ──┐
+Agent B session ──┼── MCP server (one per session) ──→ local broker (daemon, port 7900)
+Agent C session ──┘        one office PER PROJECT · state at ~/.office-mcp/
 ```
 
-- **Una oficina por proyecto**, identificada por un id estable guardado en la `memoria/` del proyecto (sobrevive a mover/renombrar la carpeta).
-- **Identidad por nombre**: reconectar con el mismo nombre (tras reiniciar una sesión) hereda buzón y reservas.
-- El **broker** lo enciende la primera sesión que lo necesita y se apaga solo tras ~1 h sin actividad. Consumo: ~40 MB RAM, ~0% CPU.
-- **La verdad durable vive en la memoria del proyecto** — la oficina es transporte efímero; todo evento con consecuencia se registra igual en el log del proyecto.
+- **One office per project**, identified by a stable id stored inside the project's `memoria/` (survives moving/renaming the folder).
+- **Identity by name**: reconnecting with the same name (e.g. after restarting a session) inherits your inbox and claims.
+- The **broker** is started by the first session that needs it and auto-stops after ~1 h idle. Footprint: ~40 MB RAM, ~0% CPU.
+- **Durable truth lives in the project memory** — the office is ephemeral transport; every consequential event is still recorded in the project log.
 
-## Herramientas que expone (MCP `office`)
+## Tools exposed (MCP `office`)
 
-| Tool | Qué hace |
+| Tool | What it does |
 |---|---|
-| `join_office` | Unirse a la oficina del proyecto (al arrancar la sesión) |
-| `office_who` | Ver quién está activo y qué recursos hay reservados |
-| `office_announce` | Publicar un evento (`intent`/`contract_change`/`blocker`/`question`/`done`/`info`), con menciones o a todos |
-| `office_inbox` | Leer tus mensajes pendientes |
-| `office_claim` / `office_release` | Reservar / liberar un recurso (aviso, no candado) |
-| `office_leave` | Salida limpia al cerrar la sesión |
-| `office_shutdown` | Cerrar la oficina del proyecto (devuelve el acta de la jornada) |
+| `join_office` | Join the project's office (at session startup) |
+| `office_who` | See active agents and claimed resources |
+| `office_announce` | Publish an event (`intent`/`contract_change`/`blocker`/`question`/`done`/`info`), with mentions or broadcast |
+| `office_inbox` | Read your pending messages |
+| `office_claim` / `office_release` | Claim / release a resource (advisory, not a lock) |
+| `office_leave` | Clean exit when closing your session |
+| `office_shutdown` | Close the project's office (returns the day's record) |
 
-Los agentes creados con `agent-factory` ya saben usarlas (archivo `07-oficina.md` de su protocolo).
+Agents created with `agent-factory` already know how to use them (protocol file `07-office.md`).
 
-## Hooks opcionales (entrega automática de menciones)
+## Hooks — near-real-time mention delivery (optional, recommended)
 
-En `hooks/` hay dos scripts para el `settings.json` de Claude Code:
+Two scripts in `hooks/` for your Claude Code `settings.json`. Together they deliver mentions **almost in real time, cross-platform** (no push channel needed):
 
-- `office-inbox-hook.mjs` (evento `UserPromptSubmit`): inyecta tus menciones nuevas al inicio de cada turno, sin llamar `office_inbox` a mano.
-- `office-commit-guard.mjs` (evento `PreToolUse`, matcher `Bash`): bloquea un `git commit` que arrastraría archivos reservados por OTRO agente. Falla abierto (ante cualquier duda, deja pasar).
+- `office-inbox-hook.mjs` (`UserPromptSubmit` event): injects your new mentions at the **start of every turn**.
+- `office-posttool-hook.mjs` (`PostToolUse` event): injects new mentions **mid-turn** — the agent learns the news on its next action (seconds), not on the next human message. Throttled (default: max 1 broker poll per 20 s per session, `OFFICE_POLL_SECONDS` to tune). Validated by `scripts/posttool-smoke.mjs` (5/5).
 
-Instrucciones de registro en la web: https://oficina.itelsystems.pe
-
-## Estado beta
-
-Probado en Windows; validación multiplataforma (macOS/Linux) y entrega de menciones a mitad de turno (hook `PostToolUse`) están en el plan de la siguiente versión. Reportes de problemas: issues del repositorio.
-
-## Pruebas
-
-```bash
-node scripts/smoke.mjs       # lógica del broker (aislado)
-node scripts/mcp-smoke.mjs   # boundary MCP cliente↔server↔broker
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      { "hooks": [{ "type": "command", "command": "node \"<this-plugin-folder>/hooks/office-inbox-hook.mjs\"" }] }
+    ],
+    "PostToolUse": [
+      { "matcher": "*", "hooks": [{ "type": "command", "command": "node \"<this-plugin-folder>/hooks/office-posttool-hook.mjs\"" }] }
+    ]
+  }
+}
 ```
 
-## Licencia
+Both hooks respect per-project isolation (they only query THIS session's office) and fail silent: broker down = nothing injected, `office_inbox` still works manually.
 
-MIT — ver `LICENSE` en la raíz del repositorio.
+There is also `office-commit-guard.mjs` (`PreToolUse`, matcher `Bash`): blocks a `git commit` that would sweep in files claimed by ANOTHER agent. Fails open (any doubt = allow).
+
+## Beta status
+
+Tested on Windows; macOS/Linux validation and a dependency-free bundle (no `npm install` step) are planned for the next version. Issues: the repository tracker.
+
+## Tests
+
+```bash
+node scripts/smoke.mjs           # broker logic (isolated)
+node scripts/mcp-smoke.mjs       # MCP boundary client↔server↔broker
+node scripts/posttool-smoke.mjs  # mid-turn mention hook (mock broker, throttle, isolation)
+```
+
+## License
+
+MIT — see `LICENSE` at the repository root.

@@ -1,22 +1,22 @@
-# Log coral del proyecto {NOMBRE_PROYECTO}
+# Choral log of project {PROJECT_NAME}
 
-Registro **append-only** donde todos los agentes del proyecto escriben las entradas importantes. Nunca se edita retroactivamente — si una entrada quedó mal, se añade una nueva que la corrige. Al arranque, cada agente lee las últimas ~20 entradas.
+**Append-only** record where every agent on the project writes important entries. Never edited retroactively — if an entry turned out wrong, a new one is added that corrects it. At startup, each agent reads the last ~20 entries.
 
-## Formato de entrada
+## Entry format
 
 ```
-[{agente} {YYYY-MM-DD HH:MM} {±desfase}] {tipo}
-- Qué: {descripción concreta}
-- Por qué: {causa / contexto}
-- Link: {archivo, checklist o decisión relacionada}
+[{agent} {YYYY-MM-DD HH:MM} {±offset}] {type}
+- What: {concrete description}
+- Why: {cause / context}
+- Link: {related file, checklist, or decision}
 ```
 
-Tipos: `decision` · `checklist_created` · `checklist_archived` · `incident` · `incident_resolved` · `research` · `entrega` · `cambio_estructural`.
+Types: `decision` · `checklist_created` · `checklist_archived` · `incident` · `incident_resolved` · `research` · `delivery` · `structural_change`.
 
-**Qué NO registrar**: ediciones individuales, avances granulares de items (viven en el checklist), conversación sin consecuencia.
+**What NOT to log**: individual edits, granular progress on items (lives in the checklist), consequence-free conversation.
 
-**Rotación**: al superar ~2500 líneas, las entradas más antiguas se mueven a `log-archive/YYYY-MM.md` dejando ~1500 vivas.
+**Rotation**: past ~2500 lines, the oldest entries move to `log-archive/YYYY-MM.md` leaving ~1500 live.
 
-## Entradas
+## Entries
 
-<!-- Las nuevas entradas se añaden ABAJO, en orden cronológico. La más reciente al final. -->
+<!-- New entries are added BELOW, in chronological order. The most recent one at the end. -->
