@@ -1,0 +1,42 @@
+# Negocio del proyecto {NOMBRE_PROYECTO}
+# El QUÉ y el PARA QUIÉN. Lo completa el agente entrevistando al humano al crear el proyecto.
+# Documenta lo que ES (estado vigente); la historia va en log.md.
+
+proyecto:
+  nombre: "{nombre}"
+  proposito: "{1-2 líneas: qué problema resuelve o qué busca lograr}"
+  fecha_inicio: "{YYYY-MM-DD}"
+
+personas:
+  - rol: "Dueño / decisor"
+    nombre: "{nombre}"
+    contexto: "{cómo participa, qué decide}"
+  - rol: "Destinatario final"
+    descripcion: "{quién recibe/usa el resultado}"
+
+dominio:
+  descripcion: |
+    {2-3 párrafos en lenguaje llano: de qué trata el proyecto.
+     Debe entenderlo alguien ajeno al tema.}
+
+glosario:
+  # Términos del dominio que todos los agentes usan consistentemente.
+  - termino: "{término}"
+    significado: "{qué significa AQUÍ}"
+
+criterios_aceptacion_generales:
+  # Qué hace que un entregable de este proyecto esté "bien". Los específicos van en cada checklist.
+  - "{criterio 1}"
+  - "{criterio 2}"
+
+objetivos_y_hitos:
+  - hito: "{nombre}"
+    condicion_de_disparo: "{qué lo activa: fecha, métrica, decisión}"
+    estado: "{planeado | en_curso | logrado}"
+
+decisiones_de_negocio_clave:
+  # Decisiones del humano que moldean el proyecto — con su porqué, para cuando el tiempo borre el contexto.
+  - fecha: "{YYYY-MM-DD}"
+    decision: "{qué se decidió}"
+    por_que: "{motivación}"
+    impacto: "{qué cambia a partir de esto}"

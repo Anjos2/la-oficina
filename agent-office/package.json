@@ -1,0 +1,19 @@
+{
+  "name": "office-mcp",
+  "version": "0.1.0",
+  "description": "La Oficina — MCP de coordinacion efimera entre agentes (sesiones de Claude Code) del equipo de software, scopeado por proyecto.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "broker": "node src/broker.mjs",
+    "server": "node src/server.mjs",
+    "cli": "node src/cli.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0"
+  }
+}

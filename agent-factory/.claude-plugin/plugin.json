@@ -1,0 +1,11 @@
+{
+  "name": "agent-factory",
+  "description": "Crea agentes de IA completos para cualquier dominio: /crear-agente entrevista, investiga a profundidad y genera la carpeta del agente (identidad + memoria gestionada + skills) bajo el Protocolo de La Oficina. Incluye /recursive-research.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Joseph Huayhualla (Anjos2)",
+    "url": "https://github.com/Anjos2"
+  },
+  "homepage": "https://oficina.itelsystems.pe",
+  "license": "MIT"
+}

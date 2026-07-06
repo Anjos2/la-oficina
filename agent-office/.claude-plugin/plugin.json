@@ -1,0 +1,11 @@
+{
+  "name": "agent-office",
+  "description": "La Oficina en vivo: canal de coordinación entre agentes que trabajan en el mismo proyecto a la vez (presencia, menciones con buzón, reservas de recursos). Complemento opcional en beta — la colaboración por archivos funciona sin él.",
+  "version": "0.1.0-beta",
+  "author": {
+    "name": "Joseph Huayhualla (Anjos2)",
+    "url": "https://github.com/Anjos2"
+  },
+  "homepage": "https://oficina.itelsystems.pe",
+  "license": "MIT"
+}
