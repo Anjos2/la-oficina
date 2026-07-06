@@ -1,0 +1,31 @@
+{
+  "name": "la-oficina",
+  "interface": {
+    "displayName": "La Oficina",
+    "description": "Build your AI agent team with persistent memory, collaborating on your projects. / Crea tu equipo de agentes de IA con memoria persistente que colaboran en tus proyectos."
+  },
+  "plugins": [
+    {
+      "name": "agent-factory",
+      "source": {
+        "source": "local",
+        "path": "./agent-factory"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "agent-office",
+      "source": {
+        "source": "local",
+        "path": "./agent-office"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

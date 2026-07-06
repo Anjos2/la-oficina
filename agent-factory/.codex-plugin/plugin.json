@@ -1,0 +1,9 @@
+{
+  "name": "agent-factory",
+  "version": "0.3.0",
+  "description": "Creates complete AI agents for any domain: /create-agent (alias /crear-agente) interviews you, researches the domain in depth and generates a universal agent folder (identity + managed memory + skills, works in Codex and Claude Code) under the La Oficina Protocol. Includes /recursive-research. Works in the user's language.",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "La Oficina — Agent Factory"
+  }
+}

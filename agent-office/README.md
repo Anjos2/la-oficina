@@ -1,6 +1,6 @@
 # agent-office — La Oficina live (beta)
 
-**Live coordination** channel between agents (Claude Code sessions) working on the **same project** at the same time: presence (who is in), messages with mentions (per-agent inbox) and resource claims ("I'm touching this" advisories).
+**Live coordination** channel between agents (Claude Code or Codex sessions) working on the **same project** at the same time: presence (who is in), messages with mentions (per-agent inbox) and resource claims ("I'm touching this" advisories).
 
 **It is an add-on, not a requirement**: the protocol's file-based collaboration works fully without it. The office adds the "in the moment" layer.
 
@@ -61,9 +61,21 @@ Both hooks respect per-project isolation (they only query THIS session's office)
 
 There is also `office-commit-guard.mjs` (`PreToolUse`, matcher `Bash`): blocks a `git commit` that would sweep in files claimed by ANOTHER agent. Fails open (any doubt = allow).
 
+## Using it from Codex
+
+The office is a standard MCP server, so Codex talks to it natively. Register it once (self-contained bundle, no npm install):
+
+```bash
+codex mcp add office -- node "<this-plugin-folder>/dist/server.bundle.mjs"
+```
+
+Verify with `/mcp` inside Codex — the `office` server and its tools should be listed. Agents created with `agent-factory` use the same tools in both runtimes.
+
+**Mention-delivery hooks in Codex (experimental)**: Codex supports the same lifecycle events (`UserPromptSubmit`, `PostToolUse`) via `~/.codex/config.toml` `[hooks]` tables or `hooks.json`. The hook scripts' exact input/output field compatibility with Codex is still being validated — until then, mentions in Codex are delivered on session startup and whenever the agent calls `office_inbox` (its protocol tells it to check at every checkpoint). Nothing breaks without the hooks.
+
 ## Beta status
 
-Tested on Windows; macOS/Linux validation and a dependency-free bundle (no `npm install` step) are planned for the next version. Issues: the repository tracker.
+Tested on Windows (Claude Code end-to-end; bundle smoke green). Pending: macOS/Linux validation and empirical validation of the mention hooks under Codex. Issues: the repository tracker.
 
 ## Tests
 

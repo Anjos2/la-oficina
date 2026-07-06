@@ -2,17 +2,19 @@
 
 **EN** — Build your AI agent team with persistent memory, collaborating on your projects. · **ES** — Crea tu equipo de agentes de IA con memoria persistente que colaboran en tus proyectos. *(Versión completa en español más abajo.)*
 
-**Website / full guide**: https://oficina.itelsystems.pe
+**Website / full guide**: https://oficina.itelsystems.pe · **Works with [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex)**
 
 ---
 
 ## What is it?
 
-A La Oficina **agent** is a folder you open as a [Claude Code](https://claude.com/claude-code) session: it has its own identity (who it is, what it masters, how it decides), a **research-backed library with sources** it loads on demand, domain **skills**, and a **shared protocol** that lets it remember across sessions and collaborate with other agents through each project's memory.
+A La Oficina **agent** is a folder you open as an agent session — in [Claude Code](https://claude.com/claude-code) or [Codex](https://developers.openai.com/codex): it has its own identity (who it is, what it masters, how it decides), a **research-backed library with sources** it loads on demand, domain **skills**, and a **shared protocol** that lets it remember across sessions and collaborate with other agents through each project's memory.
 
-It works for any domain: cooking, legal, marketing, research, fitness, software — you name it. You bring the domain; the generator researches it and builds the expert. **Every agent speaks its human's language.**
+It works for any domain: cooking, legal, marketing, research, fitness, software — you name it. You bring the domain; the generator researches it and builds the expert. **Every agent speaks its human's language**, and **every generated agent is universal**: the same folder runs in Claude Code and Codex (identity in `AGENTS.md` + skills in the open [Agent Skills](https://agentskills.io) standard).
 
 ## Install (2 commands)
+
+**Claude Code:**
 
 ```bash
 claude plugin marketplace add Anjos2/la-oficina
@@ -24,9 +26,17 @@ Then, inside Claude Code:
 /plugin install agent-factory@la-oficina
 ```
 
+**Codex:**
+
+```bash
+codex plugin marketplace add Anjos2/la-oficina
+```
+
+Then install `agent-factory` from the plugins list (`/plugins` inside Codex).
+
 ## Create your first agent
 
-In any Claude Code session:
+In any Claude Code or Codex session:
 
 ```
 /create-agent
@@ -41,6 +51,8 @@ That is the whole point. Agents on the same project coordinate **through the pro
 ```
 /plugin install agent-office@la-oficina
 ```
+
+In Codex, register the MCP directly (self-contained bundle, no npm install): `codex mcp add office -- node <plugin path>/agent-office/dist/server.bundle.mjs` — see the office [README](agent-office/README.md).
 
 (Beta — requires Node.js; see its [README](agent-office/README.md). Everything works without it.)
 
@@ -66,6 +78,6 @@ That is the whole point. Agents on the same project coordinate **through the pro
 
 ## Versión en español
 
-**La Oficina** te permite crear tu equipo de agentes de IA sobre Claude Code: cada agente es una carpeta con identidad propia, una **biblioteca investigada con fuentes** que consulta bajo demanda, skills de su oficio, y un protocolo compartido de memoria persistente y colaboración asíncrona a través de la carpeta `memoria/` de cada proyecto. Sirve para cualquier dominio — y **cada agente habla el idioma de su humano**.
+**La Oficina** te permite crear tu equipo de agentes de IA sobre **Claude Code o Codex**: cada agente es una carpeta con identidad propia, una **biblioteca investigada con fuentes** que consulta bajo demanda, skills de su oficio, y un protocolo compartido de memoria persistente y colaboración asíncrona a través de la carpeta `memoria/` de cada proyecto. Sirve para cualquier dominio, **cada agente habla el idioma de su humano**, y **cada agente generado es universal**: la misma carpeta funciona en ambos runtimes (identidad en `AGENTS.md` + skills en el estándar abierto Agent Skills).
 
-**Instalación**: `claude plugin marketplace add Anjos2/la-oficina`, luego `/plugin install agent-factory@la-oficina`. **Tu primer agente**: escribe `/create-agent` (o su alias `/crear-agente`) — el generador te entrevista en tu idioma, investiga el dominio con fuentes confiables, construye la carpeta completa y te enseña a usarla. Coordinación en vivo opcional entre varios agentes: `/plugin install agent-office@la-oficina` (beta, requiere Node.js — todo funciona sin él). Guía completa (ES/EN): https://oficina.itelsystems.pe · Licencia MIT.
+**Instalación en Claude Code**: `claude plugin marketplace add Anjos2/la-oficina`, luego `/plugin install agent-factory@la-oficina`. **En Codex**: `codex plugin marketplace add Anjos2/la-oficina`, luego instala `agent-factory` desde `/plugins`. **Tu primer agente**: escribe `/create-agent` (o su alias `/crear-agente`) — el generador te entrevista en tu idioma, investiga el dominio con fuentes confiables, construye la carpeta completa y te enseña a usarla. Coordinación en vivo opcional entre varios agentes: `/plugin install agent-office@la-oficina` (beta, requiere Node.js — todo funciona sin él; en Codex: `codex mcp add office -- node <ruta>/agent-office/dist/server.bundle.mjs`). Guía completa (ES/EN): https://oficina.itelsystems.pe · Licencia MIT.

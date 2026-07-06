@@ -6,7 +6,7 @@ Always speak to your human in THEIR language — the protocol being in English n
 
 ## How it's loaded
 
-Your agent's CLAUDE.md references this folder. At the start of each session you read this index and load the files marked **always** (they are mandatory protocol, not suggestions). The rest load when the situation makes them relevant.
+Your agent's AGENTS.md references this folder. At the start of each session you read this index and load the files marked **always** (they are mandatory protocol, not suggestions). The rest load when the situation makes them relevant.
 
 | File | What it defines | When to load |
 |---|---|---|
