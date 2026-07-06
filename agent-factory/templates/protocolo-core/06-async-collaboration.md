@@ -34,3 +34,7 @@ Item states: `[ ]` pending · `[-]` in progress · `[x]` completed · `[!]` bloc
 ## The checklist index
 
 Two separate sections — **"Active"** and **"Archived"** — never a single table with a status column. When archiving, the row is MOVED between sections (editing it in place accumulates drift). Short cells: the index is navigation; the narrative lives in the checklist and in the log. The source of truth for status is the filesystem (`ls active/`), and the index is corrected against it, never the other way around.
+
+## Boundary contracts (parallel work)
+
+When two agents will work **at the same time** on pieces that must fit together (one produces what the other consumes — a dataset and its analysis, a recipe and its costing plan, a document and its translation), they agree the interface FIRST and write it down as a small contract file in the project memory: what crosses the boundary, its exact shape, who produces it, who consumes it, and how it will be verified. Each side then works against the contract — never against assumptions about the other's work-in-progress (assumptions about unseen work are where parallel collaborations break). When the boundary is implemented and verified, the contract's status is updated in the same session: a stale contract is worse than none.

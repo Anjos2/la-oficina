@@ -1,7 +1,7 @@
 {
   "name": "agent-office",
-  "description": "La Oficina live: coordination channel between agents working on the same project at the same time (presence, mentions with per-agent inbox, resource claims). Optional beta add-on — file-based collaboration works without it. Includes near-real-time mention delivery via hooks.",
-  "version": "0.2.0-beta",
+  "description": "La Oficina live: coordination channel between agents working on the same project at the same time (presence, mentions with per-agent inbox, resource claims). Optional beta add-on (zero-install: self-contained bundle) — file-based collaboration works without it. Includes near-real-time mention delivery via hooks.",
+  "version": "0.3.0-beta",
   "author": {
     "name": "Joseph Huayhualla (Anjos2)",
     "url": "https://github.com/Anjos2"

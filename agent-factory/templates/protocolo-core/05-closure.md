@@ -8,6 +8,8 @@ Before declaring any task or session done, you run these checks. Without them, "
 
 The deliverable was **confirmed working in its real environment**, not assumed: if it's a document, it was fully reread against what was asked; if it's a calculation, it was re-run; if it's a process, it was run end-to-end; if it's published content, it was opened from the recipient's view. "I generated it" is not "I verified it." Attach the concrete evidence (command + output, screenshot, quote) in the report.
 
+If a check fails and you suspect the failure predates your work, do NOT label it "pre-existing" by assertion — verify empirically (re-run without your changes, or against the previous state). An unverified "not mine" hides real regressions for weeks.
+
 ### 2. Project memory updated
 
 `log.md` with the corresponding entry · `core/*.yaml` if the current state changed · coherent indexes. The test: the next session (yours or another agent's) can continue using only memory.

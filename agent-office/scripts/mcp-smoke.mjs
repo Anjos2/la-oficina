@@ -20,7 +20,8 @@ import assert from "node:assert/strict";
 
 const PORT = 7911; // aislado
 const STATE = join(tmpdir(), `office-mcpsmoke-${process.pid}.json`);
-const SERVER = fileURLToPath(new URL("../src/server.mjs", import.meta.url));
+// OFFICE_SMOKE_SERVER permite apuntar el smoke a otro build (ej. ../dist/server.bundle.mjs)
+const SERVER = fileURLToPath(new URL(process.env.OFFICE_SMOKE_SERVER || "../src/server.mjs", import.meta.url));
 const memoriaDir = mkdtempSync(join(tmpdir(), "office-mem-"));
 
 let failures = 0;

@@ -6,14 +6,9 @@
 
 ## Requirements
 
-- Node.js ≥ 20 on PATH.
-- Install dependencies ONCE after installing the plugin (single dependency: the official MCP SDK):
+- Node.js ≥ 20 on PATH. **That's it — zero install steps**: the plugin ships a self-contained bundle (`dist/server.bundle.mjs` + `dist/broker.mjs`, no `node_modules` needed).
 
-```bash
-cd <this-plugin-folder> && npm install
-```
-
-> If an agent running `/create-agent` offered to install La Oficina, it runs this step itself with your authorization and verifies it works.
+> Developing/modifying the source instead? `npm install` once and run against `src/` (see Tests below).
 
 ## How it works
 
@@ -74,9 +69,12 @@ Tested on Windows; macOS/Linux validation and a dependency-free bundle (no `npm 
 
 ```bash
 node scripts/smoke.mjs           # broker logic (isolated)
-node scripts/mcp-smoke.mjs       # MCP boundary client↔server↔broker
+node scripts/mcp-smoke.mjs       # MCP boundary client↔server↔broker (against src/)
+OFFICE_SMOKE_SERVER=../dist/server.bundle.mjs node scripts/mcp-smoke.mjs   # same, against the shipped bundle
 node scripts/posttool-smoke.mjs  # mid-turn mention hook (mock broker, throttle, isolation)
 ```
+
+Rebuild the bundle after changing `src/`: `npx esbuild src/server.mjs --bundle --platform=node --format=esm --outfile=dist/server.bundle.mjs && npx esbuild src/broker.mjs --bundle --platform=node --format=esm --outfile=dist/broker.mjs --allow-overwrite`
 
 ## License
 
