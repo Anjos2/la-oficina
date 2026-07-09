@@ -1,7 +1,7 @@
 {
   "name": "oficina",
   "description": "Creates complete AI agents for any domain: /oficina:create-agent (alias /oficina:crear-agente) interviews you, researches the domain in depth and generates a universal agent folder (identity + managed memory + skills, works in Claude Code and Codex) under the La Oficina Protocol. Includes /oficina:recursive-research. Works in the user's language.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": {
     "name": "Joseph Huayhualla (Anjos2)",
     "url": "https://github.com/Anjos2"
