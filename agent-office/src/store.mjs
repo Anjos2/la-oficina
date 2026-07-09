@@ -1,3 +1,4 @@
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: Modelo de datos + persistencia de "La Oficina". Mantiene el estado de
  *   todas las oficinas (una por proyecto) en memoria y lo persiste a un archivo JSON

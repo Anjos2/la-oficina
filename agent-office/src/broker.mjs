@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: Daemon del broker de "La Oficina". Un unico servidor HTTP en
  *   127.0.0.1:PUERTO (localhost-only) que mantiene el estado compartido de todas las

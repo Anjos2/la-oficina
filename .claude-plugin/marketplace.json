@@ -10,9 +10,9 @@
   },
   "plugins": [
     {
-      "name": "agent-factory",
-      "source": "./agent-factory",
-      "description": "The generator: creates complete agents (identity + research-backed memory + skills) for any domain with /create-agent (alias /crear-agente), powered by deep research (/recursive-research). Works in the user's language."
+      "name": "oficina",
+      "source": "./oficina",
+      "description": "The generator: creates complete agents (identity + research-backed memory + skills) for any domain with /oficina:create-agent (alias /oficina:crear-agente), powered by deep research (/oficina:recursive-research). Works in the user's language."
     },
     {
       "name": "agent-office",

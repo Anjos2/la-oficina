@@ -1,0 +1,16 @@
+La Oficina
+Copyright (c) 2026 Joseph Huayhualla (@Anjos2)
+https://github.com/Anjos2/la-oficina
+
+This product — the agent generator (oficina plugin), the La Oficina Agent
+Protocol, the agent templates, and the live-coordination MCP server
+(agent-office, published on npm as la-oficina-mcp) — was created by
+Joseph Huayhualla (@Anjos2).
+
+Licensed under the MIT License (see LICENSE). The MIT License requires that
+the above copyright notice and the license text be included in all copies
+or substantial portions of the software.
+
+Note on generated agents: agents created WITH La Oficina belong to the users
+who generate them. This notice covers the technology (the generator, protocol,
+templates and office), not the agents users create with it.

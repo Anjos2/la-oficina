@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: CLI de inspeccion/control del broker de "La Oficina". Para que el operador
  *   (o un agente via Bash) vea el estado o apague el broker daemon sin pasar por una sesion.

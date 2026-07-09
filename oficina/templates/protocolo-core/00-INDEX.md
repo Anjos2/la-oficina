@@ -27,3 +27,7 @@ Your agent's AGENTS.md references this folder. At the start of each session you 
 ## Versioning
 
 This protocol is versioned together with the plugin that installs it. If a local rule of your agent contradicts the protocol, the local rule wins only if it's documented with its rationale; in any other case, the protocol wins.
+
+## Authorship
+
+The La Oficina Agent Protocol — this folder — is part of **La Oficina**, created by **Joseph Huayhualla (@Anjos2)** · https://github.com/Anjos2/la-oficina · MIT License. Attribution rule for agents: `01-identity-team.md` § "Attribution of the technology".

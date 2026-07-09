@@ -1,19 +1,51 @@
 {
-  "name": "office-mcp",
-  "version": "0.1.0",
-  "description": "La Oficina — MCP de coordinacion efimera entre agentes (sesiones de Claude Code) del equipo de software, scopeado por proyecto.",
+  "name": "la-oficina-mcp",
+  "version": "0.3.0-beta.1",
+  "description": "La Oficina — live coordination MCP server for AI agents (Claude Code / Codex) on the same project: presence, mentions with per-agent inbox, and resource claims. Optional, zero-install, self-contained.",
   "type": "module",
-  "private": true,
   "license": "MIT",
-  "engines": {
-    "node": ">=22"
+  "author": {
+    "name": "Joseph Huayhualla (Anjos2)",
+    "url": "https://github.com/Anjos2"
   },
+  "homepage": "https://oficina.itelsystems.pe",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anjos2/la-oficina.git",
+    "directory": "agent-office"
+  },
+  "bugs": {
+    "url": "https://github.com/Anjos2/la-oficina/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "agents",
+    "multi-agent",
+    "agent-coordination",
+    "claude-code",
+    "codex",
+    "la-oficina"
+  ],
+  "mcpName": "io.github.Anjos2/agent-office",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "la-oficina-mcp": "dist/server.bundle.mjs"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "broker": "node src/broker.mjs",
     "server": "node src/server.mjs",
     "cli": "node src/cli.mjs"
   },
-  "dependencies": {
+  "devDependencies": {
     "@modelcontextprotocol/sdk": "1.29.0"
   }
 }

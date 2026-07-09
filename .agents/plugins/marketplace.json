@@ -6,10 +6,10 @@
   },
   "plugins": [
     {
-      "name": "agent-factory",
+      "name": "oficina",
       "source": {
         "source": "local",
-        "path": "./agent-factory"
+        "path": "./oficina"
       },
       "policy": {
         "installation": "AVAILABLE"

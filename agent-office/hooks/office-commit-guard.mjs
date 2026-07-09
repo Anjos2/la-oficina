@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: Hook `PreToolUse` (Bash) que BLOQUEA un `git commit` cuando firmaría
  *   archivos reservados por OTRO agente en La Oficina del proyecto de ESTA sesión.

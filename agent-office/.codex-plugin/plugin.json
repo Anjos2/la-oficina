@@ -4,5 +4,10 @@
   "description": "La Oficina live: coordination channel between agents working on the same project at the same time (presence, mentions with per-agent inbox, resource claims). Optional beta add-on (zero-install: self-contained bundle). In Codex, register the MCP with: codex mcp add office -- node <plugin path>/dist/server.bundle.mjs (see README).",
   "interface": {
     "displayName": "La Oficina — Agent Office (beta)"
-  }
+  },
+  "author": {
+    "name": "Joseph Huayhualla (Anjos2)",
+    "url": "https://github.com/Anjos2"
+  },
+  "license": "MIT"
 }

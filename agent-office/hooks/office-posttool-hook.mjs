@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: Hook `PostToolUse` que inyecta menciones nuevas de La Oficina A MITAD DE TURNO:
  *   el agente se entera en su siguiente accion (segundos), sin esperar al proximo mensaje del

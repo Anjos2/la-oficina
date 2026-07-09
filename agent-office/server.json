@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Anjos2/agent-office",
+  "description": "La Oficina — live coordination MCP server for AI agents (Claude Code / Codex) on the same project: presence, mentions with per-agent inbox, and resource claims. Optional, zero-install, self-contained.",
+  "repository": {
+    "url": "https://github.com/Anjos2/la-oficina",
+    "source": "github",
+    "subfolder": "agent-office"
+  },
+  "version": "0.3.0-beta.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "la-oficina-mcp",
+      "version": "0.3.0-beta.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

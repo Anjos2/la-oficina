@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- Node.js ≥ 20 on PATH. **That's it — zero install steps**: the plugin ships a self-contained bundle (`dist/server.bundle.mjs` + `dist/broker.mjs`, no `node_modules` needed).
+- Node.js ≥ 22 on PATH. **That's it — zero install steps**: the plugin ships a self-contained bundle (`dist/server.bundle.mjs` + `dist/broker.mjs`, no `node_modules` needed).
 
 > Developing/modifying the source instead? `npm install` once and run against `src/` (see Tests below).
 
@@ -35,7 +35,7 @@ Agent C session ──┘        one office PER PROJECT · state at ~/.office-mc
 | `office_leave` | Clean exit when closing your session |
 | `office_shutdown` | Close the project's office (returns the day's record) |
 
-Agents created with `agent-factory` already know how to use them (protocol file `07-office.md`).
+Agents created with the `oficina` generator plugin already know how to use them (protocol file `07-office.md`).
 
 ## Hooks — near-real-time mention delivery (optional, recommended)
 
@@ -69,7 +69,7 @@ The office is a standard MCP server, so Codex talks to it natively. Register it 
 codex mcp add office -- node "<this-plugin-folder>/dist/server.bundle.mjs"
 ```
 
-Verify with `/mcp` inside Codex — the `office` server and its tools should be listed. Agents created with `agent-factory` use the same tools in both runtimes.
+Verify with `/mcp` inside Codex — the `office` server and its tools should be listed. Agents created with the `oficina` generator plugin use the same tools in both runtimes.
 
 **Mention-delivery hooks in Codex (experimental)**: Codex supports the same lifecycle events (`UserPromptSubmit`, `PostToolUse`) via `~/.codex/config.toml` `[hooks]` tables or `hooks.json`. The hook scripts' exact input/output field compatibility with Codex is still being validated — until then, mentions in Codex are delivered on session startup and whenever the agent calls `office_inbox` (its protocol tells it to check at every checkpoint). Nothing breaks without the hooks.
 
@@ -86,7 +86,13 @@ OFFICE_SMOKE_SERVER=../dist/server.bundle.mjs node scripts/mcp-smoke.mjs   # sam
 node scripts/posttool-smoke.mjs  # mid-turn mention hook (mock broker, throttle, isolation)
 ```
 
-Rebuild the bundle after changing `src/`: `npx esbuild src/server.mjs --bundle --platform=node --format=esm --outfile=dist/server.bundle.mjs && npx esbuild src/broker.mjs --bundle --platform=node --format=esm --outfile=dist/broker.mjs --allow-overwrite`
+Rebuild the bundle after changing `src/` (the authorship banner is part of the build):
+
+```bash
+BANNER="//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License"
+npx esbuild src/server.mjs --bundle --platform=node --format=esm --banner:js="$BANNER" --outfile=dist/server.bundle.mjs --allow-overwrite
+npx esbuild src/broker.mjs  --bundle --platform=node --format=esm --banner:js="$BANNER" --outfile=dist/broker.mjs --allow-overwrite
+```
 
 ## License
 

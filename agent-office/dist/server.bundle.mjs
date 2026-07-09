@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// La Oficina office MCP server - single-file bundle (no npm install needed). Source: src/server.mjs
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -15837,3 +15837,4 @@ main().catch((e) => {
   logErr(`Fatal: ${e.message}`);
   process.exit(1);
 });
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)

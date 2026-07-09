@@ -282,7 +282,8 @@ La investigación está guardada en:
   memoria/investigaciones/<slug>/
 
 Para reanudar en nueva sesión:
-  /recursive-research --resume <slug>
+  /recursive-research --resume <slug>          # standalone
+  /oficina:recursive-research --resume <slug>  # instalada via plugin oficina
 
 ¿Pausar aquí, o continuar 1-2 ciclos más? (continuar / pausar)
 ```
@@ -342,10 +343,10 @@ Opciones:
 
 ## Modo `--resume`
 
-Invocación: `/recursive-research --resume <slug>`
+Invocación: `/recursive-research --resume <slug>` (vía plugin: `/oficina:recursive-research --resume <slug>`)
 
 1. Buscar `memoria/investigaciones/<slug>/`
-2. Si no existe → error claro, sugerir `/recursive-research` normal
+2. Si no existe → error claro, sugerir `/recursive-research` normal (vía plugin: `/oficina:recursive-research`)
 3. Si existe:
    - Leer `estado.md` → reconstruir métricas
    - Leer último `ciclo-N.md` → contexto reciente
@@ -357,7 +358,7 @@ Invocación: `/recursive-research --resume <slug>`
 
 ## Modo `--list`
 
-Invocación: `/recursive-research --list`
+Invocación: `/recursive-research --list` (vía plugin: `/oficina:recursive-research --list`)
 
 Listar todas las investigaciones guardadas en `memoria/investigaciones/` del proyecto actual:
 - Slug · Semilla · Ciclos completados · Estado (abierta / cerrada) · Última modificación

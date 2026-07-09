@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: Hook `UserPromptSubmit` que inyecta, en cada turno, las menciones nuevas de La
  *   Oficina dirigidas a ESTE agente EN ESTE PROYECTO. Respeta el aislamiento por proyecto:

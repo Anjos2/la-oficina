@@ -1,3 +1,4 @@
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: Funciones PURAS del commit-guard (parsing del comando git + matching
  *   archivo↔recurso-reservado). Separadas del hook para que el smoke las importe SIN

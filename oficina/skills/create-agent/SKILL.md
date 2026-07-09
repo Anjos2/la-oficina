@@ -31,7 +31,7 @@ Confirm the summary before starting: domain, name, folder, language, depth.
 
 The agent is worth what its library is worth. No filler generalities:
 
-- **Deep**: invoke `/recursive-research` with the domain as seed (bundled in this same plugin). Let it run its cycles with source tiering; its output becomes the chapters.
+- **Deep**: invoke the bundled `recursive-research` skill (listed as `/oficina:recursive-research`) with the domain as seed. Let it run its cycles with source tiering; its output becomes the chapters.
 - **Quick**: identify the 3-4 essential pillars of the domain and, for each, run 2-3 targeted web searches against reliable sources (official documentation, sector bodies, recognized authors). Extract: principles, common mistakes of the craft, standard tools/methods, and 3-5 hard rules WITH their source.
 
 Either way produce: the pillar list (each becomes a numbered chapter), findings per pillar with sources, and the topics left out (they become the research seed).

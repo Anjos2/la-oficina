@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
 /**
  * Finalidad: MCP server (stdio) de "La Oficina" — uno por sesion de agente. Claude Code
  *   lo arranca al iniciar la sesion. Hace 3 cosas:

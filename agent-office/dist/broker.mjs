@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// La Oficina office broker - single-file bundle. Source: src/broker.mjs
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License
 
 // src/broker.mjs
 import { createServer } from "node:http";
@@ -419,3 +419,4 @@ function shutdown() {
 }
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
+//! La Oficina — (c) 2026 Joseph Huayhualla (@Anjos2) · https://github.com/Anjos2/la-oficina · MIT License (@license)
