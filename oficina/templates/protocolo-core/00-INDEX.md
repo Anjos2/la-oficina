@@ -14,7 +14,7 @@ Your agent's AGENTS.md references this folder. At the start of each session you 
 | `02-startup.md` | How a session starts: date/time, project, memory, office, status report | **always** |
 | `03-project-memory.md` | The project's `memoria/` folder: structure, choral log, checklists, current truth vs. history | **always** |
 | `04-decisions.md` | Weighted decision matrix (WDM) + Inversion: how non-trivial decisions get made | **always** |
-| `05-closure.md` | Closure gate: checks before declaring something done + pedagogical report | **always** |
+| `05-closure.md` | Closure gate: checks before declaring something done + pedagogical report + how corrected work ships (clean, without narrating its own edits) | **always** |
 | `06-async-collaboration.md` | Checklists as handoff between agents, the human as coordinator, delegation | **always** |
 | `07-office.md` | Live coordination between agents on the same project (optional complement) | on-demand: when 2+ agents are working at the same time |
 | `08-agent-anatomy.md` | What makes up an agent: identity, library, skills, folder hygiene | on-demand: when evolving your own agent (new skills, new research) |

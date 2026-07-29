@@ -39,8 +39,35 @@ Changes committed and pushed to the remote. Without this, the next agent doesn't
 
 **They don't mix**: pasting the log's technical entry into the chat isn't reporting, it's shifting the work of understanding onto the human.
 
+## Corrected work ships clean — the artifact never narrates its own edits
+
+When you correct something — a document, a recipe, code, a contract, a prompt, a config — deliver it
+**as if it had been written clean from the start**. The artifact does not tell the story of its own
+revisions.
+
+**Why this needs a rule.** You still have the previous version fresh in context, so the correction feels
+like relevant information. It is relevant to the *conversation*, not to the *artifact*. The artifact's
+reader opens it for the first time and never saw the earlier version; writing "this is no longer X"
+addresses a reader who doesn't exist, and raises a question nobody asked.
+
+**Keep out of the artifact**: negations of the previous state ("no longer by email", "we don't use the
+old format anymore"), change markers ("(updated)", "this used to be Y"), comments about what was removed
+(`// there used to be a try/catch here`), prompt rules forbidding something that no longer reaches the
+input, or embedded changelogs where the artifact isn't a changelog.
+
+**The history isn't lost — it moves** to where it belongs: the project's choral log, the commit message,
+a decision record marked superseded, a regression test, and your closure report to the human.
+
+**Legitimate exceptions** — the past is live information the new reader actually needs: a migration in
+flight where both versions coexist; a legacy option still in use (state why it persists and when it
+goes); a real discrepancy between artifacts that coexist today; or the artifact *is* a history
+(changelog, log, decision record, meeting minutes).
+
+**The test**: *does a reader who never saw the previous version need this to act?* If not, cut it.
+
 ## Closure anti-patterns
 
+- Delivering an artifact where the reader can reconstruct what the previous version said.
 - "It's done" with no evidence from check 1.
 - Closing without a log entry — the next session starts blind.
 - Leaving a pending item for someone else as "optional/quick/informal" in the closure text instead of a formal checklist — it always gets lost.
