@@ -63,6 +63,20 @@ In any Claude Code or Codex session:
 
 *(Spanish alias: `/oficina:crear-agente`.)* Plugin skills are always invoked with the plugin's namespace prefix — that's why the command starts with `oficina:`. You can also just describe what you want ("I want an agent for baking") and the model triggers the skill on its own; the explicit command is the reliable path. The generator interviews you in your language (domain, name, research depth), **researches the domain against reliable sources**, generates the complete agent folder and teaches you how to use it. Then: open that folder in a new session, greet it with your project's path, and its startup protocol does the rest.
 
+## Were you given an agent? Install it with a code
+
+If your company (or whoever built it) hands you a **ready-made private agent**, you do not create it — you install it:
+
+```
+/oficina:install-agent
+```
+
+*(Spanish alias: `/oficina:instalar-agente`.)* It asks for the **code** you were given and the **catalog URL** it came with, fetches the package, checks its integrity and leaves the agent ready to open — with the shared protocol installed, so it is always on the current version.
+
+The code gates the **download**, nothing else: once installed, the agent is a folder of text files on your machine. It works offline, forever, with no license checks and no calls home.
+
+Distributing your own private agents this way only takes a small catalog service of your own — the installer is generic and talks to any catalog that follows the published contract, so the URL is always yours, never ours.
+
 ## Want several agents working together?
 
 That is the whole point. Agents on the same project coordinate **through the project's memory** (checklists as handoffs, a shared decision log): you open whichever sessions you want and each agent resumes with full context on startup. For **live** coordination (presence, instant mentions, resource claims), install the optional add-on:

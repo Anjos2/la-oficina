@@ -12,7 +12,7 @@
     {
       "name": "oficina",
       "source": "./oficina",
-      "description": "The generator: creates complete agents (identity + research-backed memory + skills) for any domain with /oficina:create-agent (alias /oficina:crear-agente), powered by deep research (/oficina:recursive-research). Works in the user's language."
+      "description": "The generator: creates complete agents (identity + research-backed memory + skills) for any domain with /oficina:create-agent (alias /oficina:crear-agente), powered by deep research (/oficina:recursive-research). Installs ready-made private agents from a download code with /oficina:install-agent. Works in the user's language."
     },
     {
       "name": "agent-office",
