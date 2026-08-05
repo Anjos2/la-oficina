@@ -1,11 +1,11 @@
 ---
 name: install-agent
-description: Installs a private agent you were given access to, from a download code. Ask for the catalog URL and the code, fetch the package, verify it and leave the agent ready to open. Use when the user says they have a code for an agent, was given an agent by their company, or wants to install a ready-made agent instead of creating one. Responde en el idioma del usuario / works in the user's language.
+description: Installs a private agent you were given access to — either from a download code (catalog) or from a package file someone sent you (possibly password-protected). Verifies it and leaves the agent ready to open. Use when the user says they have a code for an agent, received an agent file by email or chat, was given an agent by their company, or wants to install a ready-made agent instead of creating one. Responde en el idioma del usuario / works in the user's language.
 ---
 
 # Skill: Install Agent (La Oficina)
 
-You install an **already-built private agent** that someone hands out through a catalog of their own — typically a company distributing an internal agent to its people. Your job: turn "I have a code" into a working agent folder, verified, with the protocol in place.
+You install an **already-built private agent** that someone handed out — through a catalog of their own (typically a company distributing an internal agent to its people) or as a **file sent directly** by any channel (email, chat, a drive). Your job: turn "I have a code" or "I got this file" into a working agent folder, verified, with the protocol in place.
 
 This is the **mirror of `create-agent`**: there you build an agent from research; here you receive one already built. The delivery bar is the same — nothing is "installed" until it passes verification.
 
@@ -13,13 +13,20 @@ This is the **mirror of `create-agent`**: there you build an agent from research
 
 **Genericity rule (do not break it)**: the catalog URL is **always** input from the user or their instructions — never a constant you assume. This plugin is public and serves any owner of private agents; hardcoding one company's URL would break it for everyone else. If you were given a URL in the conversation, use that one; if not, ask.
 
-## What the code does, and what it does not
+## What the code (or password) does, and what it does not
 
-Say it plainly if the user asks: the code **gates the download**. Once installed, the agent is a folder of text files on their machine — it works offline, forever, with no license checks and no calls home. Revoking a code stops future downloads and updates; it does not disable a copy already installed.
+Say it plainly if the user asks: the code gates the **download**; the password of a file package gates **opening the file**. Once installed, the agent is a folder of text files on their machine — it works offline, forever, with no license checks and no calls home. Revoking a code stops future downloads and updates; it does not disable a copy already installed. A password protects the file in transit; it does not limit what an installed copy can do.
 
 Never imply the agent phones home or can be remotely disabled. It cannot, and promising otherwise is a lie the product would have to keep.
 
-## Phase 1 — Collect what you need (ask, do not assume)
+## Phase 0 — Which door did they come through?
+
+Ask (or infer from what they already told you): **a download code, or a file?**
+
+- **Code** → catalog path: Phases 1-3 below, then 4-6.
+- **File** (they received a `.tar.gz` or `.tar.gz.enc` by email/chat/drive) → offline path: Phase 1-bis, then 4-6. No server is involved; nothing is sent anywhere.
+
+## Phase 1 — Catalog path: collect what you need (ask, do not assume)
 
 1. **The code** — as the user received it. Trim spaces; the catalog normalizes casing.
 2. **The catalog URL** — whoever gave the code gave a URL too (e.g. `https://catalog.company.com/api/agentes`). If the user does not have it, stop and tell them to ask their provider: without it there is nothing to query.
@@ -27,7 +34,23 @@ Never imply the agent phones home or can be remotely disabled. It cannot, and pr
 
 **Refuse plain `http://`** and say why: the code would travel in the clear. HTTPS only.
 
-## Phase 2 — Validate the code before downloading anything
+## Phase 1-bis — Offline path: open the package file
+
+1. Ask for the **file path** and, if the sender provided one, the **sha256** of the inner package (good senders include it in their hand-over message).
+2. **Detect what you got** by reading the first bytes of the file (`head -c 8`):
+   - Starts with `Salted__` → **encrypted package**. Ask the user for the **password** (whoever sent the file shared it — by a different channel if they followed the instructions). Decrypt with the canonical parameters, which are a contract with the packager — never vary them:
+     ```bash
+     openssl enc -d -aes-256-cbc -pbkdf2 -iter 600000 -in <file> -out <slug>.tar.gz -pass 'pass:<PASSWORD>'
+     ```
+     **On failure** (`bad decrypt` = wrong password): say so in plain words, and **delete the output file** — openssl leaves a garbage file behind on failure, and a half-written archive lying around is exactly the kind of debris that gets "installed" by accident later. Let them retry; do not loop endlessly (3 attempts, then suggest re-checking the password with the sender).
+   - Starts with gzip magic (`1f 8b`) → **plain package**, proceed directly.
+   - Anything else → not a La Oficina package; say so and stop.
+3. If a sha256 was provided, verify the (decrypted) `.tar.gz` against it. Mismatch → **abort and delete**: the file was corrupted in transit or is not what the sender published. If no sha256 was provided, say you are proceeding without integrity verification — worth one honest sentence, not a blocker.
+4. **Where to install** — the archive's single root folder tells you the slug; propose `~/agents/<slug>` and confirm before writing anything.
+
+Then continue at Phase 4 (Install) — from here on, both paths are identical.
+
+## Phase 2 — Catalog path: validate the code before downloading anything
 
 ```
 POST {catalog_url}/validar     Content-Type: application/json
@@ -39,7 +62,7 @@ Send the code **in the body, never in the URL** — codes in query strings end u
 - If the response has `ok: false` → **stop**. Show the `mensaje` field to the user as-is (it is written for them) and explain what it means: `codigo_no_existe` usually means a typo or a code for a different catalog; `revocado` means the owner turned it off — they should contact whoever gave it to them. Do not retry in a loop.
 - If `ok: true` → you now have `nombre`, `descripcion`, `version`, `tamano_bytes` and `sha256`. **Tell the user what they are about to install** (name, one-line description, version, size) and confirm before downloading. This is the step that prevents installing the wrong agent with a wrong code.
 
-## Phase 3 — Download and check integrity
+## Phase 3 — Catalog path: download and check integrity
 
 ```
 POST {catalog_url}/descargar   Content-Type: application/json
@@ -79,12 +102,13 @@ In plain words:
 1. **How to open it**: `cd <path> && claude` (Claude Code) or `cd <path> && codex` (Codex), or open the folder in the desktop app. Greet it with the path of the project to work on; its startup protocol does the rest. The same folder works in both runtimes.
 2. **What it knows**: name the agent's chapters in one line each, from `memoria/00-INDEX.md` — the user should know what expertise they just received.
 3. **What it does not cover** — read it from the specialty section of `AGENTS.md`. Setting the boundary now avoids the disappointment of asking it something outside its craft.
-4. **Updates**: if the owner publishes a new version, running this skill again with the same code installs it. Say plainly that a reinstall **overwrites** the folder, so anything they added themselves inside it should be backed up first.
+4. **Updates**: if the owner publishes a new version, running this skill again — with the same code, or with the new file they send — installs it. Say plainly that a reinstall **overwrites** the folder, so anything they added themselves inside it should be backed up first.
 
 ## Hard rules of this skill
 
-- Never install without validating the code first, and never report success without Phase 5.
+- Never install without validating first (the code on the catalog path; the magic bytes, password and sha256 on the offline path), and never report success without Phase 5.
 - Never hardcode a catalog URL into this skill or suggest a default one.
-- Never send the code in a URL, a log line, or your own output back to the user's screen beyond what they typed.
+- Never send the code or the password in a URL, a log line, or your own output back to the user's screen beyond what they typed. Never write the password to any file.
+- The decryption parameters (`-aes-256-cbc -pbkdf2 -iter 600000`) are a contract with the packager — never vary them. A file that does not open with them was packaged differently or corrupted; report, do not improvise.
 - Never claim the agent can be remotely disabled or that it verifies a license at startup — it does not.
 - If the package is missing pieces the protocol expects (no `AGENTS.md`, no chapters), do not "fix" it by inventing content: report it to the user as a defective package so the owner can republish.

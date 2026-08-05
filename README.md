@@ -63,7 +63,7 @@ In any Claude Code or Codex session:
 
 *(Spanish alias: `/oficina:crear-agente`.)* Plugin skills are always invoked with the plugin's namespace prefix — that's why the command starts with `oficina:`. You can also just describe what you want ("I want an agent for baking") and the model triggers the skill on its own; the explicit command is the reliable path. The generator interviews you in your language (domain, name, research depth), **researches the domain against reliable sources**, generates the complete agent folder and teaches you how to use it. Then: open that folder in a new session, greet it with your project's path, and its startup protocol does the rest.
 
-## Were you given an agent? Install it with a code
+## Were you given an agent? Install it
 
 If your company (or whoever built it) hands you a **ready-made private agent**, you do not create it — you install it:
 
@@ -71,11 +71,22 @@ If your company (or whoever built it) hands you a **ready-made private agent**, 
 /oficina:install-agent
 ```
 
-*(Spanish alias: `/oficina:instalar-agente`.)* It asks for the **code** you were given and the **catalog URL** it came with, fetches the package, checks its integrity and leaves the agent ready to open — with the shared protocol installed, so it is always on the current version.
+*(Spanish alias: `/oficina:instalar-agente`.)* Two doors, same result:
 
-The code gates the **download**, nothing else: once installed, the agent is a folder of text files on your machine. It works offline, forever, with no license checks and no calls home.
+- **A download code** — it asks for the code and the **catalog URL** it came with, fetches the package and checks its integrity.
+- **A file someone sent you** (email, chat, a drive) — point the installer at the file; if it is password-protected, it asks for the password the sender shared with you.
 
-Distributing your own private agents this way only takes a small catalog service of your own — the installer is generic and talks to any catalog that follows the published contract, so the URL is always yours, never ours.
+Either way it leaves the agent ready to open, with the shared protocol installed so it is always on the current version. The code gates the **download** and the password protects the **file in transit** — nothing else: once installed, the agent is a folder of text files on your machine. It works offline, forever, with no license checks and no calls home.
+
+## Share an agent you built
+
+```
+/oficina:package-agent
+```
+
+*(Spanish alias: `/oficina:empaquetar-agente`.)* It verifies your agent (no unfilled placeholders, no leaked credentials, skills mirrored), excludes what should never travel (git history, work folders), and produces **one file** you can send by any channel — optionally **encrypted with a password** (AES-256), so if the file reaches the wrong hands they get nothing. Send the password by a *different* channel than the file. Everything happens on your machine: nothing is uploaded anywhere.
+
+For distribution at scale — codes you can revoke per person, updates people can re-download — run a small **catalog service** of your own: the installer is generic and talks to any catalog that follows the published contract, so the URL is always yours, never ours.
 
 ## Want several agents working together?
 
@@ -114,6 +125,8 @@ In Codex, register the MCP directly (self-contained bundle, no npm install): `co
 **La Oficina** te permite crear tu equipo de agentes de IA sobre **Claude Code o Codex**: cada agente es una carpeta con identidad propia, una **biblioteca investigada con fuentes** que consulta bajo demanda, skills de su oficio, y un protocolo compartido de memoria persistente y colaboración asíncrona a través de la carpeta `memoria/` de cada proyecto. Sirve para cualquier dominio, **cada agente habla el idioma de su humano**, y **cada agente generado es universal**: la misma carpeta funciona en ambos runtimes (identidad en `AGENTS.md` + skills en el estándar abierto Agent Skills).
 
 **Instalación en Claude Code**: `claude plugin marketplace add Anjos2/la-oficina`, luego `/plugin install oficina@la-oficina`. **En Codex**: `codex plugin marketplace add Anjos2/la-oficina`, luego instala `oficina` desde `/plugins`.
+
+**¿Te entregaron un agente ya hecho?** No lo creas — instálalo con `/oficina:instalar-agente`: acepta un **código de descarga** (te pedirá también la URL del catálogo que te dieron) o un **archivo que te enviaron** por correo o chat; si viene protegido, te pedirá la contraseña que te compartieron. El código controla la descarga y la contraseña protege el archivo en tránsito — nada más: una vez instalado, el agente es una carpeta de archivos de texto en tu máquina, funciona sin internet y no llama a ningún servidor. **¿Quieres compartir un agente que construiste?** `/oficina:empaquetar-agente` lo verifica (sin huecos, sin credenciales filtradas), excluye lo que no debe viajar y produce un solo archivo — opcionalmente **cifrado con contraseña (AES-256)** — que puedes enviar por el medio que quieras; comparte la contraseña por un canal distinto al del archivo. Todo ocurre en tu máquina: nada se sube a ningún lado.
 
 **¿Lo instalaste antes del 9 de julio de 2026?** El plugin se renombró `agent-factory` → `oficina`, y en **Codex** instalar el nuevo no basta: hay que **desinstalar el viejo** con `codex plugin remove agent-factory@la-oficina`. Motivo: `codex plugin marketplace upgrade` no retira un plugin que desapareció del marketplace por un rename — el viejo queda habilitado en `~/.codex/config.toml` con su caché, **invisible para `codex plugin list`**, y aun así compite por la resolución de la skill; cuando gana, entrega las instrucciones previas al rename (`/create-agent`, sin el namespace que sí funciona). Síntoma que delata el problema: el comando no resuelve, o te muestran instrucciones **sin** el prefijo `oficina:`. Verifícalo con `grep 'plugins."' ~/.codex/config.toml` (debe listar solo `oficina@la-oficina`) y `ls ~/.codex/plugins/cache/la-oficina/` (solo `oficina`). **En Claude Code no hay que hacer nada**: verificado empíricamente, valida cada plugin contra su marketplace *antes* de cargar sus skills, así que un plugin renombrado nunca las sirve — solo aparece como `✘ failed to load`. Desinstalarlo es limpieza opcional.
 
